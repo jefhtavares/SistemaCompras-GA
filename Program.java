@@ -22,5 +22,7 @@ public class Program {
 
 
         // 6. Instanciar uma compra em 3 parcelas. Finalizar e exibir dados dela.
+
+        System.out.println((new Data(1, 1, 2001)).obtemDataInvertida());
     }
 }

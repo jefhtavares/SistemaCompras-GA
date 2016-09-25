@@ -6,16 +6,16 @@ public class Data {
     private int ano;
 
     public Data(){
-        GregorianCalendar c = new GregorianCalendar();
-        dia = c.get(GregorianCalendar.DAY_OF_MONTH);
-        mes = c.get(GregorianCalendar.MONTH) + 1;
-        ano = c.get(GregorianCalendar.YEAR);
+        GregorianCalendar calendar = new GregorianCalendar();
+        dia = calendar.get(GregorianCalendar.DAY_OF_MONTH);
+        mes = calendar.get(GregorianCalendar.MONTH) + 1;
+        ano = calendar.get(GregorianCalendar.YEAR);
     }
 
-    public Data(int d, int m, int a) {
-        dia = d;
-        mes = m;
-        ano = a;
+    public Data(int dia, int mes, int ano) {
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
     }
 
     @Override
@@ -26,6 +26,10 @@ public class Data {
 
     public boolean eMaiorQue(Data outra){
         return this.getTicks() > outra.getTicks();
+    }
+
+    public boolean eMenorQue(Data outra){
+        return this.getTicks() < outra.getTicks();
     }
 
     private int getTicks(){
@@ -40,36 +44,26 @@ public class Data {
     }
 
     public String obtemDataPadraoComZeros() {
-        if (dia >= 10 && mes >= 10)
-            return obtemDataPadrao();
-        else{
-            String d = String.valueOf(dia);
-            if (dia < 10)
-                d = "0" + dia;
+        String d = String.format("%02d", dia);
+        String m = String.format("%02d", mes);
 
-            String m = String.valueOf(mes);
-
-            if (mes < 10)
-                m = "0" + mes;
-
-            return d + "/" + m + "/" + ano;
-        }
+        return d + '/' + m + '/' + ano;
     }
 
     public int obtemDataInvertida() {
         return ano * 10000 + mes * 100 + dia;
     }
 
-    public void setDia(int d){
-        dia = d;
+    public void setDia(int dia){
+        this.dia = dia;
     }
 
-    public void setMes(int m){
-        mes = m;
+    public void setMes(int mes){
+        this.mes = mes;
     }
 
-    public void setAno(int a){
-        ano = a;
+    public void setAno(int ano){
+        this.ano = ano;
     }
 
     public int getDia(){
@@ -85,8 +79,7 @@ public class Data {
     }
 
     public void leData() {
-        Teclado t = new Teclado();
-        int data = t.leInt();
+        int data = Teclado.leInt();
         ano = data / 10000;
         mes = (data - ano * 10000) / 100;
         dia = data - ano * 10000 - mes * 100;
