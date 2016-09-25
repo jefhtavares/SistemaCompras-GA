@@ -1,3 +1,3 @@
 ### SistemaCompras-GA
 
-Primeiro trabalho do GA de Programação 1 (2016/2 - Unisinos)
+Primeiro trabalho do GA de Laboratório de programação 1 (2016/2 - Unisinos)
