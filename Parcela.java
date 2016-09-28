@@ -55,7 +55,7 @@ public class Parcela {
     public boolean registraAtraso(){
         Data hoje = new Data();
 
-        if(this.situacao.equals('N') && this.dataVencimento.eMaiorQue(hoje)){
+        if(this.situacao == 'N' && this.dataVencimento.eMaiorQue(hoje)){
             this.situacao = 'A';
             return true;
         }
@@ -68,16 +68,22 @@ public class Parcela {
     }
 
     public String traduzSituacao(){
-        if(this.situacao.equals('N'))
+        if(this.situacao == 'N')
             return "Não venceu ainda";
 
-        if(this.situacao.equals('A'))
+        if(this.situacao == 'A')
             return "Em atraso";
 
         return "Quitada";
     }
 
-    public void exibeDados(){
+    public void exibeDados(int numParcela){
         //Todo: Acho que isso deveria ser na classe compra
+        System.out.print("Parcela número: " + numParcela);
+        System.out.print(" - Nome do cliente: " + cliente.getNome());
+        System.out.print(" - Vencimento: " + dataVencimento.obtemDataPadraoComZeros());
+        System.out.print(" - Valor original: " + valorOriginal);
+        System.out.print(" - Situação: " + traduzSituacao() + "\n");
+
     }
 }

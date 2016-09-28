@@ -1,7 +1,7 @@
 public class Program {
     public static void main(String args[]){
         // 1. Instanciar um cliente, para o qual serão instanciadas as 5 compras abaixo
-
+        Cliente cliente = new Cliente("Jéferson", new Data(01, 12, 1995));
 
         // 2. Instanciar uma compra à vista (usar o primeiro construtor), com mês da
         // compra igual ao do aniversário do cliente, finalizar a compra e exibir
@@ -22,7 +22,7 @@ public class Program {
 
 
         // 6. Instanciar uma compra em 3 parcelas. Finalizar e exibir dados dela.
-
-        System.out.println((new Data(1, 1, 2001)).obtemDataInvertida());
+        Parcela p = new Parcela(cliente, new Data(01, 12, 2016), 80.0);
+        p.exibeDados(1);
     }
 }
