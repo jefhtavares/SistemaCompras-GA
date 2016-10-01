@@ -18,6 +18,16 @@ public class Data {
         this.ano = ano;
     }
 
+    /** Adiciona um mês na data corrente */
+    public void incrementaMes(){
+        if(this.mes == 12){
+            this.ano += 1;
+            this.mes = 1;
+        }else{
+            this.mes += 1;
+        }
+    }
+
     @Override
     public boolean equals(Object other){
         Data outraData = (Data)other;

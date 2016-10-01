@@ -1,5 +1,5 @@
 public class Parcela {
-    private Cliente cliente; //completamente desnecessário
+    private Cliente cliente;
     private Data dataVencimento;
     private double valorOriginal;
     private double valorFinal;
@@ -63,8 +63,23 @@ public class Parcela {
         return false;
     }
 
-    public void paga(Data dataPagamento){
-        //Todo:
+    public double paga(Data dataPagamento){
+        if(!dataPagamento.eMaiorQue(this.dataVencimento)){
+            return 0;
+        }
+
+        int diasDiff = dataPagamento.diasDeOutraData(this.dataVencimento);
+        double juros = 0;
+
+        if(diasDiff <= 5){
+
+        }else if (diasDiff <= 15){
+
+        }else{
+
+        }
+
+
     }
 
     public String traduzSituacao(){

@@ -66,7 +66,7 @@ public class Cliente {
     }
 
     public void exibeDados(){
-        System.out.println("Exibindo dados do cliente: " + this.nome);
+        System.out.println("Nome: " + this.nome);
         System.out.println("Data de nascimento: " + this.dataNascimento.obtemDataPadrao());
         System.out.println("Valor da penúltima compra: " + this.valorPenultimaCompra);
         System.out.println("Valor da última compra: " + this.valorUltimaCompra);
