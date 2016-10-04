@@ -42,12 +42,44 @@ public class Compra {
         return (valorUltimaCompra > this.valorUltimaCompra) && (this.valorUltimaCompra > this.valorPenultimaCompra);
     }
 
-    public void finalizaCompra(){
-        //Todo:
+    public String finalizaCompra(){
+        if(this.modalidade == 1){
+            if(this.cliente.getDataNascimento.getMes == this.dataCompra.getMes()){
+                this.precoFinal = this.preco - (this.preco * 0.2);
+                return "Compra a vista, ganhou 20% de desconto, pois o cliente nasceu em " + this.cliente.getDataNascimento().obtemDataPadrao();
+
+            }else if(this.ultimasCrescente(this.valorUltimaCompra)){
+                this.precoFinal = this.preco - (this.preco * 0.08);
+                return "Compra a vista, ganhou 8% de desconto";
+
+            }else{
+                this.precoFinal = this.preco - (this.preco * 0.05);
+                return "Compra a vista, ganhou só 5% de desconto";
+            }
+        }else if(this.modalidade == 2){
+            this.precoFinal = this.preco - (this.preco * 0.035);
+
+            double valorParcelado = this.precoFinal / 2;
+            double valorParcela = valorParcelado / 2;
+
+            this.p1 = new Parcela(this.cliente, calculaVencimentoParcela(this.dataCompra), valorParcela);
+            this.p2 = new Parcela(this.cliente, calculaVencimentoParcela(this.p1.getDataVencimento()), valorParcela);
+
+            return "Compra com entrada + 2 parcelas, ganhou desconto de 3,5%";
+
+        }else if(this.modalidade == 3){
+            double valorParcela = this.precoFinal / 3;
+            this.p1 = new Parcela(this.cliente, calculaVencimentoParcela(this.dataCompra), valorParcela);
+            this.p2 = new Parcela(this.cliente, calculaVencimentoParcela(this.p1.getDataVencimento()), valorParcela);
+            this.p3 = new Parcela(this.cliente, calculaVencimentoParcela(this.p2.getDataVencimento()), valorParcela);
+
+            return "Compra em 3 parcelas, não ganhou desconto";
+        }
+
     }
 
-    public Data calculaVencimentoParcela(Data vencimento){
-        Data ret = new Data(28, vencimento.getMes(), vencimento.getAno());
+    public Data calculaVencimentoParcela(Data dataBase){
+        Data ret = new Data(28, dataBase.getMes(), dataBase.getAno());
         ret.incrementaMes();
         return ret;
     }
