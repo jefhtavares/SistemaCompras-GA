@@ -39,16 +39,16 @@ public class Compra {
     }
 
     public boolean ultimasCrescente(double valorUltimaCompra){
-        return (valorUltimaCompra > this.valorUltimaCompra) && (this.valorUltimaCompra > this.valorPenultimaCompra);
+        return (valorUltimaCompra > this.cliente.getValorUltimaCompra()) && (this.cliente.getValorUltimaCompra() > this.cliente.getValorPenultimaCompra());
     }
 
     public String finalizaCompra(){
         if(this.modalidade == 1){
-            if(this.cliente.getDataNascimento.getMes == this.dataCompra.getMes()){
+            if(this.cliente.getDataNascimento().getMes() == this.dataCompra.getMes()){
                 this.precoFinal = this.preco - (this.preco * 0.2);
                 return "Compra a vista, ganhou 20% de desconto, pois o cliente nasceu em " + this.cliente.getDataNascimento().obtemDataPadrao();
 
-            }else if(this.ultimasCrescente(this.valorUltimaCompra)){
+            }else if(this.ultimasCrescente(this.cliente.getValorUltimaCompra())){
                 this.precoFinal = this.preco - (this.preco * 0.08);
                 return "Compra a vista, ganhou 8% de desconto";
 
@@ -67,7 +67,7 @@ public class Compra {
 
             return "Compra com entrada + 2 parcelas, ganhou desconto de 3,5%";
 
-        }else if(this.modalidade == 3){
+        }else /*if(this.modalidade == 3)*/{
             double valorParcela = this.precoFinal / 3;
             this.p1 = new Parcela(this.cliente, calculaVencimentoParcela(this.dataCompra), valorParcela);
             this.p2 = new Parcela(this.cliente, calculaVencimentoParcela(this.p1.getDataVencimento()), valorParcela);
@@ -97,7 +97,7 @@ public class Compra {
     }
 
     public String traduzModalidade(){
-        traduzModalidade(this.modalidade);
+        return traduzModalidade(this.modalidade);
     }
 
     public void exibirDados(){

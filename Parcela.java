@@ -64,22 +64,31 @@ public class Parcela {
     }
 
     public double paga(Data dataPagamento){
+        double percJuros;
+
         if(!dataPagamento.eMaiorQue(this.dataVencimento)){
-            return 0;
+            percJuros = 0;
         }
 
         int diasDiff = dataPagamento.diasDeOutraData(this.dataVencimento);
-        double juros = 0;
 
         if(diasDiff <= 5){
-
+            percJuros = 0.01;
         }else if (diasDiff <= 15){
-
+            percJuros = 0.015;
         }else{
-
+            percJuros = 0.025;
         }
 
+        double valorJuros = this.valorOriginal * percJuros;
+        this.situacao = 'Q';
+        this.valorFinal = this.valorOriginal + valorJuros;
 
+        double saldoDevedorCliente = this.cliente.getSaldoDevedor() - this.valorOriginal;
+        //Tem que subtrair o valor original, porque o atributo "saldoDevedor" foi calculado com os valores originais das parcelas
+        this.cliente.setSaldoDevedor(saldoDevedorCliente);
+
+        return valorJuros;
     }
 
     public String traduzSituacao(){
