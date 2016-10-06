@@ -25,12 +25,14 @@ public class Compra {
     }
 
     public void escolheModalidade(){
-        System.out.println("-- Modalidades disponíveis --");
+        System.out.println("\t-- Modalidades disponiveis --");
         System.out.println("1 - " + traduzModalidade(1));
         System.out.println("2 - " + traduzModalidade(2));
         System.out.println("3 - " + traduzModalidade(3));
 
         int modalidade = Teclado.leInt("Escolha a modalidade da compra: ");
+
+        //DEBUG: =( System.out.println("***MODALIDADE: " + modalidade + "***");
 
         if(modalidade < 1 || modalidade > 3)
             this.modalidade = 1;
@@ -56,7 +58,7 @@ public class Compra {
 
             }else{
                 this.precoFinal = this.preco - (this.preco * 0.05);
-                msgRetorno = "Compra a vista, ganhou só 5% de desconto";
+                msgRetorno = "Compra a vista, ganhou so 5% de desconto";
             }
         }else if(this.modalidade == 2){
             this.precoFinal = this.preco - (this.preco * 0.035);
@@ -67,17 +69,18 @@ public class Compra {
             this.p1 = new Parcela(this.cliente, calculaVencimentoParcela(this.dataCompra), valorParcela);
             this.p2 = new Parcela(this.cliente, calculaVencimentoParcela(this.p1.getDataVencimento()), valorParcela);
 
-            this.cliente.setSaldoDevedor(this.cliente.getSaldoDevedor() + this.precoFinal);
+            this.cliente.setSaldoDevedor(this.cliente.getSaldoDevedor() + valorParcelado);
             msgRetorno = "Compra com entrada + 2 parcelas, ganhou desconto de 3,5%";
         }else /*if(this.modalidade == 3)*/{
+            this.precoFinal = this.preco;
+
             double valorParcela = this.precoFinal / 3;
             this.p1 = new Parcela(this.cliente, calculaVencimentoParcela(this.dataCompra), valorParcela);
             this.p2 = new Parcela(this.cliente, calculaVencimentoParcela(this.p1.getDataVencimento()), valorParcela);
             this.p3 = new Parcela(this.cliente, calculaVencimentoParcela(this.p2.getDataVencimento()), valorParcela);
 
-            this.precoFinal = this.preco;
             this.cliente.setSaldoDevedor(this.cliente.getSaldoDevedor() + this.precoFinal);
-            msgRetorno = "Compra em 3 parcelas, não ganhou desconto";
+            msgRetorno = "Compra em 3 parcelas, nao ganhou desconto";
         }
 
         this.cliente.setValorPenultimaCompra(this.cliente.getValorUltimaCompra());
@@ -108,11 +111,11 @@ public class Compra {
     }
 
     public void exibirDados(){
-        System.out.println(" === Exibindo dados da compra ===");
+        System.out.println("\t=== Exibindo dados da compra ===");
 
         System.out.println("Data: " + dataCompra.obtemDataPadrao());
-        System.out.println("Preço: " + preco);
-        System.out.println("Preço final: " + precoFinal);
+        System.out.println("Preco: " + preco);
+        System.out.println("Preco final: " + precoFinal);
         System.out.println("Modalidade: " + traduzModalidade());
 
         if(this.cliente != null){

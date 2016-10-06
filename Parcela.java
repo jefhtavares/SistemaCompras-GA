@@ -93,7 +93,7 @@ public class Parcela {
 
     public String traduzSituacao(){
         if(this.situacao == 'N')
-            return "Não venceu ainda";
+            return "Nao venceu ainda";
 
         if(this.situacao == 'A')
             return "Em atraso";
@@ -103,11 +103,11 @@ public class Parcela {
 
     public void exibeDados(int numParcela){
         //Todo: Acho que isso deveria ser na classe compra
-        System.out.print("Parcela número: " + numParcela);
+        System.out.print("Parcela numero: " + numParcela);
         System.out.print(" - Nome do cliente: " + cliente.getNome());
         System.out.print(" - Vencimento: " + dataVencimento.obtemDataPadraoComZeros());
         System.out.print(" - Valor original: " + valorOriginal);
-        System.out.print(" - Situação: " + traduzSituacao() + "\n");
+        System.out.print(" - Situacao: " + traduzSituacao() + "\n");
 
     }
 }

@@ -68,8 +68,8 @@ public class Cliente {
     public void exibeDados(){
         System.out.println("Nome: " + this.nome);
         System.out.println("Data de nascimento: " + this.dataNascimento.obtemDataPadrao());
-        System.out.println("Valor da penúltima compra: " + this.valorPenultimaCompra);
-        System.out.println("Valor da última compra: " + this.valorUltimaCompra);
+        System.out.println("Valor da penultima compra: " + this.valorPenultimaCompra);
+        System.out.println("Valor da ultima compra: " + this.valorUltimaCompra);
         System.out.println("Saldo devedor: " + this.saldoDevedor);
     }
 }
